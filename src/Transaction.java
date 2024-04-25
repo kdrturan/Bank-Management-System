@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
@@ -27,7 +28,7 @@ public class Transaction extends javax.swing.JFrame {
     Statement st = null;
     int sendingID;
     /**
-     * Creates new form Transcaktion
+     * Creates new form Transaction
      */
     public Transaction() {
         initComponents();
@@ -50,40 +51,34 @@ public class Transaction extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        IbanLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         NameLabel = new javax.swing.JLabel();
-        SurnameLabel = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        SendButton = new javax.swing.JButton();
-        BackButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        BalanceText = new javax.swing.JTextField();
-        AmountEx = new javax.swing.JLabel();
-        SurnameEx = new javax.swing.JLabel();
-        NameEx = new javax.swing.JLabel();
         IBANEx = new javax.swing.JLabel();
+        BackButton = new javax.swing.JButton();
+        NameEx = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        AmountEx = new javax.swing.JLabel();
+        SendButton = new javax.swing.JButton();
+        AmountText = new javax.swing.JTextField();
         IbanText = new javax.swing.JTextField();
         NameText = new javax.swing.JTextField();
+        BalanceText = new javax.swing.JTextField();
+        IbanLabel = new javax.swing.JLabel();
+        SurnameLabel = new javax.swing.JLabel();
+        SurnameEx = new javax.swing.JLabel();
         SurnameText = new javax.swing.JTextField();
-        AmountText = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        IbanLabel.setText("IBAN:");
-
+        NameLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         NameLabel.setText("First Name:");
 
-        SurnameLabel.setText("Last Name:");
+        IBANEx.setForeground(new java.awt.Color(255, 51, 51));
+        IBANEx.setText(" ");
 
-        jLabel4.setText("Amount:");
-
-        SendButton.setText("Send");
-        SendButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SendButtonActionPerformed(evt);
-            }
-        });
-
+        BackButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         BackButton.setText("Back");
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,134 +86,219 @@ public class Transaction extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Balance:");
+        NameEx.setForeground(new java.awt.Color(255, 51, 0));
+        NameEx.setText(" ");
 
-        BalanceText.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Balance:");
 
         AmountEx.setForeground(new java.awt.Color(255, 51, 0));
         AmountEx.setText(" ");
 
-        SurnameEx.setForeground(new java.awt.Color(255, 51, 0));
-        SurnameEx.setText(" ");
-
-        NameEx.setForeground(new java.awt.Color(255, 51, 0));
-        NameEx.setText(" ");
-
-        IBANEx.setForeground(new java.awt.Color(255, 51, 51));
-        IBANEx.setText(" ");
-
-        IbanText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                IbanTextKeyPressed(evt);
+        SendButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        SendButton.setText("Send");
+        SendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendButtonActionPerformed(evt);
             }
         });
 
-        NameText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                NameTextKeyPressed(evt);
-            }
-        });
-
-        SurnameText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                SurnameTextKeyPressed(evt);
-            }
-        });
-
+        AmountText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         AmountText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 AmountTextKeyPressed(evt);
             }
         });
 
+        IbanText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        IbanText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IbanTextKeyPressed(evt);
+            }
+        });
+
+        NameText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        NameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameTextActionPerformed(evt);
+            }
+        });
+        NameText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                NameTextKeyPressed(evt);
+            }
+        });
+
+        BalanceText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        BalanceText.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        IbanLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        IbanLabel.setText("IBAN:");
+
+        SurnameLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        SurnameLabel.setText("Last Name:");
+
+        SurnameEx.setForeground(new java.awt.Color(255, 51, 0));
+        SurnameEx.setText(" ");
+
+        SurnameText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        SurnameText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SurnameTextKeyPressed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("Amount:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(SurnameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(NameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(NameText)
+                                .addComponent(SurnameText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(AmountText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(SendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(IbanLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(BalanceText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(IbanText, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(104, 104, 104)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(AmountEx)
+                    .addComponent(IBANEx))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SurnameEx)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(NameEx))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(BalanceText))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IbanLabel)
+                    .addComponent(IbanText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(IBANEx)
+                        .addGap(45, 45, 45)
+                        .addComponent(NameEx))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NameLabel)
+                            .addComponent(NameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SurnameLabel)
+                            .addComponent(SurnameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(AmountText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(SurnameEx))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(38, 38, 38)
+                .addComponent(AmountEx))
+        );
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setText("Money Transfer");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(SurnameEx)
-                        .addGap(203, 203, 203))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(AmountEx)
-                        .addGap(204, 204, 204))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(NameEx)
-                        .addGap(200, 200, 200))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(IBANEx)
-                        .addGap(204, 204, 204))))
             .addGroup(layout.createSequentialGroup()
+                .addGap(73, 73, 73)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(IbanLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SurnameLabel)
-                            .addComponent(NameLabel)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1))
-                        .addGap(126, 126, 126)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(BalanceText, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                            .addComponent(IbanText)
-                            .addComponent(NameText)
-                            .addComponent(SurnameText)
-                            .addComponent(AmountText)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
-                        .addComponent(SendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(139, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(BalanceText))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IbanLabel)
-                    .addComponent(IbanText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(IBANEx)
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NameLabel)
-                    .addComponent(NameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NameEx)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SurnameLabel)
-                    .addComponent(SurnameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SurnameEx)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(AmountText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(AmountEx)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(93, 93, 93))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(491, 397));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void SurnameTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SurnameTextKeyPressed
+
+    }//GEN-LAST:event_SurnameTextKeyPressed
+
+    private void NameTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NameTextKeyPressed
+
+    }//GEN-LAST:event_NameTextKeyPressed
+
+    private void NameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameTextActionPerformed
+
+    private void IbanTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IbanTextKeyPressed
+        char c = evt.getKeyChar();
+
+        if(Character.isLetter(c))
+        {
+            IbanText.setEditable(false);
+        }
+        else IbanText.setEditable(true);
+    }//GEN-LAST:event_IbanTextKeyPressed
+
+    private void AmountTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AmountTextKeyPressed
+        char c = evt.getKeyChar();
+
+        if(Character.isLetter(c))
+        {
+            AmountText.setEditable(false);
+        }
+        else AmountText.setEditable(true);
+    }//GEN-LAST:event_AmountTextKeyPressed
+
     private void SendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendButtonActionPerformed
-        
-     try{
-            if (ra != null) 
+
+        try{
+            if (ra != null)
                 ra.close();
             if((Integer.parseInt(BalanceText.getText())) < (Integer.parseInt(AmountText.getText())))
             {
@@ -232,15 +312,17 @@ public class Transaction extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "The entered information does not match");
                 return;
             }
-            String transql = "insert into transactions values (?, ?, ?, ?, ?)";
+            String transql = "insert into transactions values (?, ?, ?, ?, ?, ?, ?)";
             pst = conn.prepareStatement(transql);
             Random a = new Random();
-            pst.setInt(1, (a.nextInt(100)));
+            pst.setInt(1, (a.nextInt(900000) + 100000));
             pst.setString(2, (Integer.toString(sendingID)));
-            Date currentDate = new Date();
-            pst.setTimestamp(1, new java.sql.Timestamp(currentDate.getTime()));
+            String time = LocalDateTime.now().toString();
+            pst.setString(3, time);
             pst.setString(4, AmountText.getText());
             pst.setString(5, IbanText.getText());
+            pst.setString(6, NameText.getText());
+            pst.setString(7, SurnameText.getText());   
             pst.execute();
             pst.close();
             st = conn.createStatement();
@@ -250,50 +332,23 @@ public class Transaction extends javax.swing.JFrame {
             Receivingaccount();
             homepage();
             System.out.print("Sended\n");
-            JOptionPane.showMessageDialog(null, "Sended");  
+            JOptionPane.showMessageDialog(null, "Sended");
         }catch(SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
+        }catch(Exception e)
+        {
+            
         }
     }//GEN-LAST:event_SendButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         try {
-
+               
             homepage();
         } catch (SQLException ex) {
             Logger.getLogger(Transaction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_BackButtonActionPerformed
-
-    private void IbanTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IbanTextKeyPressed
-        char c = evt.getKeyChar();
-        
-        if(Character.isLetter(c))
-        {
-            IbanText.setEditable(false);
-            IBANEx.setText("Please Enter Only Number");       
-        }
-        else IbanText.setEditable(true);
-    }//GEN-LAST:event_IbanTextKeyPressed
-
-    private void AmountTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AmountTextKeyPressed
-         char c = evt.getKeyChar();
-        
-        if(Character.isLetter(c))
-        {
-            AmountText.setEditable(false);
-            AmountEx.setText("Please Enter Only Number");       
-        }
-        else AmountText.setEditable(true);
-    }//GEN-LAST:event_AmountTextKeyPressed
-
-    private void NameTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NameTextKeyPressed
- 
-    }//GEN-LAST:event_NameTextKeyPressed
-
-    private void SurnameTextKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SurnameTextKeyPressed
-
-    }//GEN-LAST:event_SurnameTextKeyPressed
 
     
     public int check() throws SQLException
@@ -303,20 +358,23 @@ public class Transaction extends javax.swing.JFrame {
             pst = conn.prepareStatement(selectsql);
             pst.setString(1, NameText.getText());
             ra = pst.executeQuery();
+            if (ra.next()) 
+            {
             String IBANFromDatabase = ra.getString("IBAN");
             String surnameFromDatabase = ra.getString("Last Name");
             String enteredIBAN = IbanText.getText();
             String enteredSurName = SurnameText.getText();
+
             ra.close();
-            pst.close();
-            System.out.print("asdasasfsaagas\n");
-            if (IBANFromDatabase != null && surnameFromDatabase != null && IBANFromDatabase.equals(enteredIBAN)&& surnameFromDatabase.equals(enteredSurName))
-                return 1;       
-       }catch(SQLException ex) {
+
+            if (IBANFromDatabase != null && surnameFromDatabase != null && IBANFromDatabase.equals(enteredIBAN) && surnameFromDatabase.equals(enteredSurName))
+                return 1;
+            }
+        }catch(SQLException ex) {
             Logger.getLogger(Transaction.class.getName()).log(Level.SEVERE, null, ex);
         }catch(Exception e)
         {
-            
+            System.out.println("Hataaağğ");
         }
         return 0;
     }
@@ -337,6 +395,7 @@ public class Transaction extends javax.swing.JFrame {
         }
         System.out.print("Homepage\n");
         ob.setVisible(true);
+        dispose();
     }
     
     public void Sendingaccount() throws SQLException
@@ -351,6 +410,9 @@ public class Transaction extends javax.swing.JFrame {
         pst.close();
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex);
+        }catch(Exception e)
+        {
+            
         }
     }
     
@@ -365,6 +427,9 @@ public class Transaction extends javax.swing.JFrame {
         pst.close();
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, ex);
+        }catch(Exception e)
+        {
+            
         }
     }
      
@@ -407,6 +472,8 @@ public class Transaction extends javax.swing.JFrame {
     private javax.swing.JLabel SurnameLabel;
     private javax.swing.JTextField SurnameText;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
